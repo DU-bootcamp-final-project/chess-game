@@ -5,6 +5,6 @@ class CreateGames < ActiveRecord::Migration[5.2]
       t.integer :id
       t.timestamps
     end
-    add_index :games, :user_id
+    add_index :games, :user_id_white, :user_id_black
   end
 end
