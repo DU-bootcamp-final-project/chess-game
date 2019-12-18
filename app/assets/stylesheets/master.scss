@@ -1,1 +1,11 @@
 @import "bootstrap";
+.chess-square {
+  float: left;
+  border: 1px solid red;
+}
+.chess-square-black {
+  background-color: #333;
+}
+.chess-board {
+  border: 1px solid red;
+}
