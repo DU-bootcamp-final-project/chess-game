@@ -9,6 +9,7 @@ class GamesController < ApplicationController
   end
 
   def update
+    @game = Game.update
   end
 
   def show
