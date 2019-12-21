@@ -8,7 +8,7 @@ class GamesController < ApplicationController
     @game = Game.new
   end
 
-  def create
+  def update
   end
 
   def show
