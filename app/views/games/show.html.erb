@@ -1,0 +1,10 @@
+<div class="chess-board" data-width="480" data-black="#333">
+
+</div>
+<script type="text/javascript">
+  setInterval(function () {
+    console.log("rendered");
+    create_chess_board($('div.chess-board'),<%= @game.id %>, <%= @game.getBoardObject.to_json %>);
+  },1000)
+  
+</script>
