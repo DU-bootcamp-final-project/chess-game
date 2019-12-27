@@ -4,7 +4,8 @@
 <script type="text/javascript">
   setInterval(function () {
     console.log("rendered");
+    window.TYPES = <%= Piece::getTypeMapForJS().to_json.html_safe %>;
     create_chess_board($('div.chess-board'),<%= @game.id %>, <%= @game.getBoardObject.to_json %>);
-  },1000)
-  
+  },2000)
 </script>
+

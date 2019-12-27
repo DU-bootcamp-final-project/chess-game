@@ -1,7 +1,7 @@
 
 /*
 
-0 white_rook
+0  = img_tag 'white_rook.PNG'
 1 white_knight
 2 white_bishop
 3 white_king
@@ -15,18 +15,19 @@
 11 black_pawn
 
 */
-let board = [
-  [0,1,2,4,3,2,1,0],
-  [5,5,5,5,5,5,5,5],
-  [-1,-1,-1,-1,-1,-1,-1,-1],
-  [-1,-1,-1,-1,-1,-1,-1,-1],
-  [-1,-1,-1,-1,-1,-1,-1,-1],
-  [-1,-1,-1,-1,-1,-1,-1,-1],
-  [5,5,5,5,5,5,5,5],
-  [0,1,2,3,4,2,1,0]
-];
 
-function create_chess_board(root,game_id) {
+// let board = [
+//   [6,7,8,9,10,8,7,6],
+//   [11,11,11,11,11,11,11,11],
+//   [-1,-1,-1,-1,-1,-1,-1,-1],
+//   [-1,-1,-1,-1,-1,-1,-1,-1],
+//   [-1,-1,-1,-1,-1,-1,-1,-1],
+//   [-1,-1,-1,-1,-1,-1,-1,-1],
+//   [5,5,5,5,5,5,5,5],
+//   [0,1,2,4,3,2,1,0],
+// ];
+
+function create_chess_board(root,game_id,board) {
   console.log('game_id', game_id)
   function is_black(i,j) {
     if ( i % 2 == 0 ) {
@@ -39,6 +40,7 @@ function create_chess_board(root,game_id) {
   let width = root.attr('data-width');
   let black_color = root.attr('data-black');
   root.css({'width':parseInt(width)+2});
+
   let alpha = 'ABCDEFGH';
   for ( let i = 0; i < 8; i ++ ) {
     for ( let j = 0; j < 8; j++ ) {
@@ -48,8 +50,19 @@ function create_chess_board(root,game_id) {
         div.addClass('chess-square-black');
       root.append(div)
       //div.html(alpha[j]+ (9- (i+1)))
-      if ( board[i][j] !== -1)
-        div.append(board[i][j]);
+      
+  
+
+      //how do I attach the image tag to the piece ID made in Piece.rb?
+      if ( board[i][j] !== -1) {
+        var pname = window.TYPES[board[i][j]];
+        var base = "/assets/images";
+        var img = $('<img class="chess-piece" />');
+        img.addClass(pname);
+        img.attr('src',[base,pname + ".PNG"].join('/'));
+        div.append(img);
+      }
+      
     }
   }
 }
