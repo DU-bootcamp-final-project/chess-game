@@ -1,4 +1,4 @@
-class Piece
+class Piece < ApplicationRecord
   attr_reader :type
   TYPES = [
     # Pieces white side
