@@ -1,4 +1,5 @@
 class Piece
+  belongs_to :game
   attr_reader :type
   TYPES = [
     # Pieces white side
