@@ -27,6 +27,9 @@ class Piece
   def initialize(t) 
     @type = Piece::TYPES.index(t)
   end
+  def self.getTypeMapForJS()
+      Piece::TYPES
+  end
   def getTypeSym
     return Piece::TYPES[@type]
   end
@@ -37,8 +40,6 @@ class Piece
     end
     return Piece::TYPES_TO_AL[ind]
   end
-end
-
 
   def is_obstructed?(destination)
 
