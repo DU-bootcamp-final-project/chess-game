@@ -2,10 +2,9 @@
 
 </div>
 <script type="text/javascript">
-  setInterval(function () {
-    console.log("rendered");
-    window.TYPES = <%= Piece::getTypeMapForJS().to_json.html_safe %>;
-    create_chess_board($('div.chess-board'),<%= @game.id %>, <%= @game.getBoardObject.to_json %>);
-  },2000)
+  let game =  create_chess_board($('div.chess-board'),<%= @game.id %>, <%= @game.getBoardObject.to_json %>);
+  window.TYPES = <%= Piece::getTypeMapForJS().to_json.html_safe %>;
+  game();
+  $('body').on('chess-render-board',game);
 </script>
 
