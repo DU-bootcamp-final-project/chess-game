@@ -1,4 +1,6 @@
 class Piece < ApplicationRecord
+
+  belongs_to :game
   attr_reader :type
   TYPES = [
     # Pieces white side
@@ -26,6 +28,9 @@ class Piece < ApplicationRecord
   def initialize(t) 
     @type = Piece::TYPES.index(t)
   end
+  def self.getTypeMapForJS()
+      Piece::TYPES
+  end
   def getTypeSym
     return Piece::TYPES[@type]
   end
@@ -36,8 +41,6 @@ class Piece < ApplicationRecord
     end
     return Piece::TYPES_TO_AL[ind]
   end
-end
-
 
   def is_obstructed?(destination)
 
