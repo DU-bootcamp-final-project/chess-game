@@ -1,45 +1,52 @@
-class Piece
+class Piece < ApplicationRecord
   belongs_to :game
-  attr_reader :type
-  TYPES = [
-    # Pieces white side
-    :white_rook,
-    :white_knight,
-    :white_bishop,
-    :white_king,
-    :white_queen,
-    :white_pawn,
-    :black_rook,
-    :black_knight,
-    :black_bishop,
-    :black_king,
-    :black_queen,
-    :black_pawn
-  ]
-  TYPES_TO_AL = [
-    'R',
-    'N',
-    'B',
-    'K',
-    'Q',
-    'P'
-  ]
-  def initialize(t) 
-    @type = Piece::TYPES.index(t)
-  end
-  def self.getTypeMapForJS()
-      Piece::TYPES
-  end
-  def getTypeSym
-    return Piece::TYPES[@type]
-  end
-  def getTypeAl
-    ind = @type
-    if ind > Piece::TYPES_TO_AL.length - 1
-      ind -= Piece::TYPES_TO_AL.length
-    end
-    return Piece::TYPES_TO_AL[ind]
-  end
+
+  VALID_TYPES = %w[
+    Pawn Bishop King Queen Knight Rook 
+  ].freeze 
+
+  validates :type, presence: true, inclusion: {in: VALID_TYPES, message: "%{value} is not a valid type"}
+
+  # attr_reader :type
+  # TYPES = [
+  #   # Pieces white side
+  #   :white_rook,
+  #   :white_knight,
+  #   :white_bishop,
+  #   :white_king,
+  #   :white_queen,
+  #   :white_pawn,
+  #   :black_rook,
+  #   :black_knight,
+  #   :black_bishop,
+  #   :black_king,
+  #   :black_queen,
+  #   :black_pawn
+  # ]
+  # TYPES_TO_AL = [
+  #   'R',
+  #   'N',
+  #   'B',
+  #   'K',
+  #   'Q',
+  #   'P'
+  # ]
+  # def initialize(t) 
+  #   @type = Piece::TYPES.index(t)
+  # end
+  # def self.getTypeMapForJS()
+  #     Piece::TYPES
+  # end
+  # def getTypeSym
+  #   return Piece::TYPES[@type]
+  # end
+  # def getTypeAl
+  #   ind = @type
+  #   if ind > Piece::TYPES_TO_AL.length - 1
+  #     ind -= Piece::TYPES_TO_AL.length
+  #   end
+  #   return Piece::TYPES_TO_AL[ind]
+  # end
 
   def is_obstructed?(destination)
 
@@ -61,6 +68,10 @@ class Piece
 
     return false 
 
+  end
+
+  def valid_move?(x_destination, y_destination) #each piece is going to need to implemnt it's own vaild move method 
+    raise NotImplementedError 
   end
 
 end 

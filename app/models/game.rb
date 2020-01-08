@@ -16,4 +16,10 @@ class Game < ApplicationRecord
       [0,1,2,4,3,2,1,0],
     ]
   end
+
+def check(user_id_white, user_id_black)
+  # checked_king = piece.find_by(type: 'King')
+  # opponent_pieces = piece.find_by(user_id_white, captured: false)
+  #need to check for oppnents and irrate through remaining pieces to see if they can capture King? or check to see if king still has a valid move?
+
 end
