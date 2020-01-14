@@ -1,5 +1,12 @@
-class Piece
+class Piece < ApplicationRecord
   belongs_to :game
+
+  VALID_TYPES = %w[
+    Pawn Bishop King Queen Knight Rook 
+  ].freeze 
+
+  validates :type, presence: true, inclusion: {in: VALID_TYPES, message: "%{value} is not a valid type"}
+
   attr_reader :type
   TYPES = [
     # Pieces white side
@@ -24,9 +31,9 @@ class Piece
     'Q',
     'P'
   ]
-  def initialize(t) 
-    @type = Piece::TYPES.index(t)
-  end
+  # def initialize(t) 
+  #   @type = Piece::TYPES.index(t)
+  # end
   def self.getTypeMapForJS()
       Piece::TYPES
   end
@@ -61,6 +68,10 @@ class Piece
 
     return false 
 
+  end
+
+  def valid_move?(x_destination, y_destination) #each piece is going to need to implemnt it's own vaild move method 
+    raise NotImplementedError 
   end
 
 end 
