@@ -1,0 +1,34 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-light">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Chess Game App</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+	  <% if user_signed_in? %>  
+      <li class="nav-item">
+        <%= link_to 'Player', '#', class: 'nav-link' %>
+      </li>
+        <% else %>
+      <li class="nav-item">
+        <%= link_to 'Sign-In', '#', class: 'nav-link' %>
+      </li>
+        <% end %>
+      <li class="nav-item">
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<span>
+	<% Game.available.each do |game| %>
+	  <tr class="game-table-row">
+	    <td ><%= game.name %></td>
+	    <td><%= game.user_id_black %></td>
+	    <td><%= link_to 'Join', game_path(game.id), method: :patch %></td>
+	  </tr>
+	<% end %>
+</span>
