@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  scope :available, -> { where(user_id_white: true) }
+  scope :available, -> { where("user_id_white = null") }
  
   has_many :pieces
 

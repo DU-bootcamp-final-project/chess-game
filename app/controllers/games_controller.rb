@@ -37,4 +37,12 @@ class GamesController < ApplicationController
     params.require(:game).permit(:name, :user_id_black)
   end
   
+  def available
+    if white_player_id
+      return true
+    else
+      return false
+    end
+  end
+  
 end
